@@ -1,7 +1,5 @@
 package Multihilos.ArchivosJava_2;
 
-import javax.management.RuntimeErrorException;
-
 public class Ejemplo02_2grupos extends Thread{
     @Override
     public void run(){
