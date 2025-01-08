@@ -1,2 +1,95 @@
-ESCENARIOS DONDE LA COMUNICACIÓN EN RED ES NECESARIA;
+ESCENARIOS DONDE LA COMUNICACIÓN EN RED ES NECESARIA; 
+
+PYTHON TODO
+
+La programación en red es el desarrollo de apps que se comunican entre sí a través de una red.
+
+
+No hay programas que a día de hoy, no estén comunicados con internet, pueden ser cualquier tipo de programa,
+ya sea IoT, videojuegos en línea, servicios web; cliente-servidor.....
+
+// IoT es un paradigma de red que conecta con ordenadores más pequeños para poder sacar mucha información en masa, concepto de (red en) malla
+
+
+
+
+ROLES Y FUNCIONES EN ARQUITECTURAS CLIENTE-SERVIDOR;
+
+Arquitectura cliente-servidor
+todos los clientes piden servicio a un servidor y este devuelve el servicio, aparece el concepto de DNS, HCP se encarga de
+tomar una IP de forma dinámica
+Si mi PC no consigue reconocer un DNS, la petición va escalando en servidores que si puedan tener mi petición (se propaga)
+
+Arquitectura en 2 capas, por un lado yo tengo mi cliente que manda una petición a un servidor que me va a poder responder 
+a parte, nuestro servidor tiene un server apache y hace una petición a una bbdd oracle, entonces trabajaremos con mi servidor actuando
+de cliente con el servidor de oracle, aquí ya pasariamos a tener tres capas.
+Marenostrum 5
+
+A nivel de seguridad, cuantas más capas haya mejor, ya que tendremos la información esparcida en todos los nodos 
+
+CLIENTE: resumido, es el que inicia la comunicación, envía peticiones al server a través de protocolos como HTTP, FTP...
+         proporciona una interfaz gráfica o textual _ _ _ _ _ 
+
+SERVIDOR: Es el que espera y recibe peticiones, suelen tener un tiempo de espera, se requiere que el server esté encendido la mayor parte del 
+          tiempo posible, envia respuestas al cliente, maneja los recursos compartidos como las bbdd, archivos o servicios externos
+          se asegura de evitar conflictos en las multiples peticiones
+          verifica las identidades en internet.
+// block-chain red de ordenadores conectada que se asegura de que al pedir datos por ejemplo, de que todos te devuelvan el mismo valor
+
+
+
+
+LIBRERIAS Y MECANISMOS PARA APPS EN RED;
+
+Usaremos la libreria socket, para crear y manejar conexiones de red a bajo nivel usando sockets TCP/UDP
+y la libreria request para realizar peticiones HTTP/HTTPS
+// urllib, scapy, paramiko, flask
+//asyncio, fastAPI, 
+// (solo flask); Un servicio web REST usa los servicios de http 
+
+
+
+SOCKETS;
+
+Un socket es un extremo en una comunicación bidireccional entre dos apps que se ejecutan en red. Es uno de los mecanismos utilizados por 
+los programas para enviar y recibir datos a través de la red, ya sea en Internet o en una red local.
+//Es un conector 
+Los sockets abstraen los detalles de la comunicación
+
+
+SE SEPARAN EN DOS FAMILIAS;
+
+    Con orientación a conexión;
+        Chats.
+        Se les llama así porque están basados en el protocolo TCP (Transmission Control Protocol), que requiere una conexión estable
+        proveen una conexión confiable, lo que quiere decir que los datos se entregan en orden y sin perdidas (se asegura de que todo llega
+        a través de comunicaciones de ACKNOWLEDGEMENT)
+        Sus usos son las apps web, servidores web...
+
+    Sin orientación a conexión;
+        Cosas que necesitan una respuesta en tiempo real, llamadas por discord, videollamadas, streaming...
+        basados en UDP (User Datagram Protocol), que NO requiere de una conexión estable
+        No proveen una conexión confiable, puede haber pérdidas...
+
+
+Sockets multitask;
+    Son sockets especiales no orientados a conexión que nos permite enviar datos a varios destinatarios simultáneamente usando UDP
+    usan direcciones IP "especiales", designadas a formar grupos multicast de la 224.0.0.0 a la 230.255.255.255
+    hay que asegurarse de que el trafico multicast está permitido y que la IP puesta sea admitida
+
+
+
+CARACTERISTICAS DE LOS SOCKETS;
+    Transparencia
+    Direccionamiento
+    Dirección IP
+    Puerto
+    Protocolo
+    Los sockets pueden configurarse para trabajar en modos blocantes o no blocantes
+    Interoperabilidad
+
+
+// los primeros 1024 puertos estan cerrados, tenemos que decir que recicle el puerto ya que tras usarlo queda bloq un tiempo
+
+
 
