@@ -21,44 +21,19 @@ if (pid_hijo == 0): #hijo
     os._exit(0)
 else: # padre
     os.close(w)
-    # result = []
+    resultado = [] # creamos la lista resultado para manejar con facilidad el elevarlo al cuadrado
     while True:
         num = os.read(r, 1024) # leemos los numeros
         if not num:
             break
-    
+        num = int(num.decode().split)
+        resultado.append(num**2) # elevamos al cuadrado     
+
+print(listaNumeros)
+print("Estos son los cuadrados")
+for res in resultado:
+    print(res)
+
+os.wait()
+
 print("Fin")
-
-
-
-
-
-
-
-
-
-
-"""Un proceso productor que genera una lista de números
-del uno al diez y los envía a través de una pipe 
-/ el proces consumidor los recibe y eleva al cuadrado 
-cada número / el proces principal imprime
-    
-# crea y ejecuta el proceso productor
-def productor(w):
-    numbers = list(range[1,10])
-    for number in numbers:
-        os.write(w, f"{number}".encode())
-    os.close(w)
-                    
-# crea y ejecuta el proceso consumidor    
-def consumidor(r):
-
-    
-numbers = list(range(1, 11))
-for number in numbers:
-    os.write(pipe_out, f"{number}\n".encode())  # Escribir cada número en una línea
-    os.close(pipe_out)
-        
-        
-        
-        """

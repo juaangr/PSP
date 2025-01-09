@@ -1,8 +1,10 @@
 import os
 import time
 print("INICIO")
+
 r, w = os.pipe() # creamos 4 tuberias
 pid = os.fork()
+
 if pid > 0: # padre
     os.close(r) # no vamos a leer
     os.write(w, "Hola".encode())
@@ -14,6 +16,6 @@ else: #hijo
     if texto.lower() == "hola":
         print("Adios")
     os._exit(0)
-# padre
+    
 os.close(w)
 print("FIN")
