@@ -1,6 +1,7 @@
 ESCENARIOS DONDE LA COMUNICACIÓN EN RED ES NECESARIA; 
-
 PYTHON TODO
+
+
 
 La programación en red es el desarrollo de apps que se comunican entre sí a través de una red.
 
@@ -11,9 +12,17 @@ ya sea IoT, videojuegos en línea, servicios web; cliente-servidor.....
 // IoT es un paradigma de red que conecta con ordenadores más pequeños para poder sacar mucha información en masa, concepto de (red en) malla
 
 
+___________________________________________________________________________________________________________________________________________________
 
 
 ROLES Y FUNCIONES EN ARQUITECTURAS CLIENTE-SERVIDOR;
+
+Podemos resumir el rol de servidor con sus funciones como:
+    Esperar y recibir solicitudes 
+    Procesa esas solicitudes y ejecuta lo necesario para resolverlas, como consultas sql
+    manejar recursos compartidos como BBDD
+    se asegura de no crear conflictos al acceder a los recursos, gestiona la concurrencia
+    Verifica la identidad de los clientes y se asegura que solo los autorizados realicen acciones
 
 Arquitectura cliente-servidor
 todos los clientes piden servicio a un servidor y este devuelve el servicio, aparece el concepto de DNS, HCP se encarga de
@@ -36,8 +45,7 @@ SERVIDOR: Es el que espera y recibe peticiones, suelen tener un tiempo de espera
           verifica las identidades en internet.
 // block-chain red de ordenadores conectada que se asegura de que al pedir datos por ejemplo, de que todos te devuelvan el mismo valor
 
-
-
+___________________________________________________________________________________________________________________________________________________
 
 LIBRERIAS Y MECANISMOS PARA APPS EN RED;
 
@@ -47,6 +55,8 @@ y la libreria request para realizar peticiones HTTP/HTTPS
 //asyncio, fastAPI, 
 // (solo flask); Un servicio web REST usa los servicios de http 
 
+
+___________________________________________________________________________________________________________________________________________________
 
 
 SOCKETS;
@@ -76,6 +86,9 @@ Sockets multitask;
     Son sockets especiales no orientados a conexión que nos permite enviar datos a varios destinatarios simultáneamente usando UDP
     usan direcciones IP "especiales", designadas a formar grupos multicast de la 224.0.0.0 a la 230.255.255.255
     hay que asegurarse de que el trafico multicast está permitido y que la IP puesta sea admitida
+    sus usos son voIP, streaming...
+    se establecen numeros maximos de salto de router (TLL o TTL ns)
+    // wlp1s0   este es el puerto que permite (al menos en el pc del profe) [ip adress]
 
 
 
@@ -88,8 +101,20 @@ CARACTERISTICAS DE LOS SOCKETS;
     Los sockets pueden configurarse para trabajar en modos blocantes o no blocantes
     Interoperabilidad
 
-
 // los primeros 1024 puertos estan cerrados, tenemos que decir que recicle el puerto ya que tras usarlo queda bloq un tiempo
 
+_______________________________________________________________________________________________________________________________________________
+
+SOCKETS PARA COMM CLIENT SERVER:
+
+Server
+    creación del socket
+    asocia socket a una ip y puerto específico (bind)
+
+client
+
+
+
+La librería socket nos permite crear sockets usando el método socket(), tenemos que especificar la familia de direcciones (ip)
 
 
