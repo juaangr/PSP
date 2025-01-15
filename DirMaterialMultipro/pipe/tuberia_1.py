@@ -7,7 +7,7 @@ pid = os.fork()
 
 if pid > 0: # padre
     os.close(r) # no vamos a leer
-    os.write(w, "Hola".encode())
+    os.write(w, input("saluda: ").encode())
     os.wait()
 else: #hijo
     time.sleep(0.1)
