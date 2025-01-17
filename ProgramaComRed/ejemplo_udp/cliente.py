@@ -1,11 +1,18 @@
-import sys
 import socket
-# faltan cosas
+import sys
+
 
 if len(sys.argv) != 2:
     exit()
-    
-zocalo = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-dir_server = ('127.0.0.1', 3000)
 
-zocalo.sendto(sys.argv[1].encode())
+socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+direccion_server = ('127.0.0.1', 3000)
+
+socket.sendto(sys.argv[1].encode(), direccion_server)
+data, address = socket.recvfrom(1024) # esperamos la respuesta del server
+
+try:
+    print(f"Recibido {int(data.decode())} de {address}")
+except Exception as e:
+    print(f"Recibido {data} de {address}")
+    print(f"Error: {e}")
