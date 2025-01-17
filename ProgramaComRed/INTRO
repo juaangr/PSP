@@ -118,3 +118,24 @@ client
 La librería socket nos permite crear sockets usando el método socket(), tenemos que especificar la familia de direcciones (ip)
 
 
+
+
+// Protocolo tcp -> connect()cli , accept()server , 
+// close() compartido , listen()serv
+// bind() compartido , recv(1024) , send() 
+
+
+USO DE HILOS PARA COMUNICACIÓN SIMULTANEA DE CLIENTES:
+
+from threading import Thread o algo así
+Solo vimos la version blocante de los sockets, lo que hace que al ejecutar
+en un server cualquiera como uno TCP un accept()...........
+
+importaremos la biblioteca threading y usaremos la función:
+threading.Thread(target=manejador, args=(cliente, dir_cliente))
+
+es muy similar a la función ya conocida:
+.....multiprocesing.Process....
+
+De esta forma podemos dedicar el hilo principal a escuchar y aceptar
+nuevas conexiones
