@@ -1,4 +1,13 @@
 ESCENARIOS DONDE LA COMUNICACIÓN EN RED ES NECESARIA; 
+
+OBJETOS IMPORTANTES QUE VOY A USAR (qué hacen por debajo):
+
+variable.bind() // de socket -> Va a asociar un socket con una dir específica
+                   y un num de puerto
+
+
+
+
 PYTHON TODO
 
 
@@ -139,3 +148,11 @@ es muy similar a la función ya conocida:
 
 De esta forma podemos dedicar el hilo principal a escuchar y aceptar
 nuevas conexiones
+
+
+
+MODELOS DE COMM MÁS HABITUALES EN APPS DISTRIBUIDAS:
+
+Modelo cliente servidor: 
+
+Modelo publicación suscripción: 
