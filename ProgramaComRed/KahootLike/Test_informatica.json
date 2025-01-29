@@ -1,0 +1,53 @@
+{
+    "nombre": "test_informatica",
+    "preguntas":[
+        {
+            "enunciado": "¿Cuál es el elemento encargado de procesar los datos de la CPU?",
+            "respuestas": ["RAM", "ROM", "Tarjeta gráfica", "Tarjeta de sonido"]
+        },
+        {
+            "enunciado":  "¿Qué es falso sobre la memoria RAM?",
+            "respuestas": ["Es volatil", "Es acceso aleatorio", "Solo lee", "Es lectura/escritura"]
+        },
+        {
+            "enunciado":  "",
+            "respuestas": []
+
+        },
+        {
+            "enunciado":  "",
+            "respuestas": []
+
+        },
+        {
+            "enunciado":  "",
+            "respuestas": []
+
+        },
+        {
+            "enunciado":  "",
+            "respuestas": []
+
+        },
+        {
+            "enunciado":  "",
+            "respuestas": []
+
+        },
+        {
+            "enunciado":  "",
+            "respuestas": []
+
+        },
+        {
+            "enunciado":  "",
+            "respuestas": []
+
+        },
+        {
+            "enunciado":  "",
+            "respuestas": []
+
+        }
+    ]
+}
