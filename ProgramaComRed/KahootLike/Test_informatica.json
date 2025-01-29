@@ -7,10 +7,10 @@
         },
         {
             "enunciado":  "¿Qué es falso sobre la memoria RAM?",
-            "respuestas": ["Es volatil", "Es acceso aleatorio", "Solo lee", "Es lectura/escritura"]
+            "respuestas": ["Es volatil", "Es acceso aleatorio", "Solo lectura", "Es lectura/escritura"]
         },
         {
-            "enunciado":  "",
+            "enunciado":  "En el cod",
             "respuestas": []
 
         },
