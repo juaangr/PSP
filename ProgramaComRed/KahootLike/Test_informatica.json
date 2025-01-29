@@ -10,43 +10,43 @@
             "respuestas": ["Es volatil", "Es acceso aleatorio", "Solo lectura", "Es lectura/escritura"]
         },
         {
-            "enunciado":  "En el cod",
-            "respuestas": []
+            "enunciado":  "En el codigo ascii, cada letra es representada por:",
+            "respuestas": ["8 bits", "8 bytes", "2 bytes", "16 bits"]
 
         },
         {
-            "enunciado":  "",
-            "respuestas": []
+            "enunciado":  "Son funciones del SO:",
+            "respuestas": ["Gestionar la RAM", "Gestionar procesos", "Gestión E/S", "Todas son correctas"]
 
         },
         {
-            "enunciado":  "",
-            "respuestas": []
+            "enunciado":  "¿Cuál de los siguientes softwares no es un SO?",
+            "respuestas": ["", "", "", ""]
 
         },
         {
-            "enunciado":  "",
-            "respuestas": []
+            "enunciado":  "¿Cuál de los siguientes elementos corresponde a la seguridad lógica?",
+            "respuestas": ["Cintas de Backup", "Antivirus", "SAI", "Cluster"]
 
         },
         {
-            "enunciado":  "",
-            "respuestas": []
+            "enunciado":  "¿?",
+            "respuestas": ["", "", "", ""]
 
         },
         {
-            "enunciado":  "",
-            "respuestas": []
+            "enunciado":  "¿?",
+            "respuestas": ["", "", "", ""]
 
         },
         {
-            "enunciado":  "",
-            "respuestas": []
+            "enunciado":  "¿?",
+            "respuestas": ["", "", "", ""]
 
         },
         {
-            "enunciado":  "",
-            "respuestas": []
+            "enunciado":  "¿?",
+            "respuestas": ["", "", "", ""]
 
         }
     ]
