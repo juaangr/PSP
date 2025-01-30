@@ -177,34 +177,107 @@ Los métodos más interesantes que podemos utilizar con los sockets, son;
 · socket(), constructor de un socket
 · bind(), establece el puerto y la dirección del servidor TCP/UDP
 · listen(), escucha de peticiones por el servidor TCP
-· accept(), aceptar 
-· connect(),
-· close(),
-· recv(),
-· send(),
-· sendto(),
-· recvfrom(),
+· accept(), aceptar conexión por el servidor TCP 
+· connect(), crear conexión desde el cliente TCP 
+· close(), Cierre del socket TCP 
+· recv(), recibir info escrita en el socket TCP 
+· send(), enviar info en una conexión TCP
+· sendto(), enviar info a través de un socket UDP
+· recvfrom(), recibir info a través de un socket UDP
 
 
 USO DE HILOS PARA COMUNICACIÓN SIMULTANEA DE CLIENTES:
 
 from threading import Thread o algo así
+
 Solo vimos la version blocante de los sockets, lo que hace que al ejecutar
-en un server cualquiera como uno TCP un accept()...........
+en un server cualquiera como uno TCP un accept(), la conexión se establezca con un socket 
+cliente y no puedan otros sockets clientes conectar con el server hasta que este no termine 
+con el primer cliente
+Para mejorar esto, podemos hacer que nuestro server use la concurrencia de los hilos para
+responder a cada cliente en uno diferente, es decir, mantenter una conexión en cada hilo
+
+Para crear hilops en python lo podemos hacer de una forma bastante parecida a como lo hacíamos
+para ejecutar en procesos nuevos una función manejadora.
 
 importaremos la biblioteca threading y usaremos la función:
 threading.Thread(target=manejador, args=(cliente, dir_cliente))
 
 es muy similar a la función ya conocida:
-.....multiprocesing.Process....
+multiprocesing.Process(target=manejador, args=(loQueSea))
 
 De esta forma podemos dedicar el hilo principal a escuchar y aceptar
-nuevas conexiones
-
+nuevas conexiones, mientras que por cada una de ellas se gestiona la comunicación en red a
+través de los sockets
 
 
 MODELOS DE COMM MÁS HABITUALES EN APPS DISTRIBUIDAS:
 
-Modelo cliente servidor: 
+· Modelo cliente servidor: (Solicitud-respuesta), Un nodo cliente envía la solicitud a otros
+                           nodos servidores y espera una respuesta, puede ser síncrono o async,
+                           todo depende de si es blocante. El protocolo más común es el HTTP, 
+                           como en APIs REST o GraphQL
 
-Modelo publicación suscripción: 
+· Modelo publicación suscripción: Los nodos productores (publishers) publican mensajes en un 
+                                  canal, y los consumidores (suscriptores) reciben los mensajes
+                                  que coinciden con sus suscripciones. Se suele usar con 
+                                  sistemas inteligentes de domótica o IoT, por ejemplo MQTT
+                                  en Node-Red.
+
+· Comunicación por mensajes: (Message Passing), los nodos se comunican enviando mensajes a 
+                             través de un sistema de mensajería. Puede ser punto a punto (P2P)
+                             o con sistemas intermediarios, como AWS SQS. Se usan para 
+                             procesamiento de trabajos asíncronos, entre otras cosas.
+
+· Streaming: (Transmisión contínua), los datos se envían en tiempo real desde un productor a
+             uno o más consumidores (suscribers) de manera continua. Es ideal para grandes 
+             volúmenes de datos, eventos en tiempo real, etc... Se suele usar en vídeo, de 
+             forma que no hace falta descargar toda una película para empezar a verla.
+            
+· P2P: (Peer to peer), Todos los nodos actúan como iguales (peers), compartiendo los recursos
+       directamente entre ellos. No hay un server central y es muy escalable, aunque complejo
+       de gestionar. Se usa en descargas de redes de archivos, como torrents, y en el 
+       blockchain como las criptomonedas, la WEB3 o los NFTs...
+
+En este caso vamos a aprender a usar un sistema de publicación-suscripción además del modelo
+cliente-servidor visto con sockets. Para este modelo muy usado en IoT, emplearemos programas 
+en python que simulen sensores a falta de ellos, y que se comunicará con un sistema típicamente
+distribuido como es Node-red para actuar en tiempo real usando el protocolo MQTT y gráficas
+que nos permitirán monitorear nuestros "sensores" y "actuadores" 
+
+
+En primer lugar, para usar Node-red ejecutaremos el siguiente comando Docker:
+docker run -it -p 1880:1880 -v node_red_data:/data --name mynodered nodered/node-red
+
+Ahora, entramos a un navegador en el puerto 1880 y debería abrir nuestro Node-red
+Tenemos que clicar las tres rayas de config y en administrar paleta, instalar y buscar 
+node-red-dashboard.
+
+Ahora mismo, tenemos el sistema guiado por eventos (Node-red) y hemos instalado un plugin 
+para poser desarrollar una interfaz para nuestros datos. La interfaz se puede visistar en 
+localhost:1880/ui
+
+La interfaz funciona a base de nodos de ui en tablas, de forma que se van construyendo las 
+gráficas, textos, etc...
+Hay que "compilar" todo nuestro trabajo cada vez que hagamos algún cambio (saldrá un circulo
+azul en los nodos cambiados) con el boton de instanciar. 
+
+Para utilizar el protocolo MQTT, necesitaremos un broker MQTT, este puede ser local o en nube.
+Por supuesto si es local podemos hacer que sea gratuito sin límite de uso, pero vamos a usar
+un servicio de terceros para ver como se integraría todo.
+en este caso usaremos MyQttHub, haremos una cuenta y tendremos un plan gratuito bastante 
+decente para nuestro uso.
+
+Desde el panel de control, podremos crear usuarios (dispositivos) que se conectarán al broker.
+En principio necesitaremos un "dispositivo" por cada sistema diferente que se conecte, por
+ejemplo, uno para el programa pyhton que simule los datos de sensores, y otro para el server
+Node-red.
+Utilizaremos las credenciales de la página para conectarnos desde Node-red, creando un nodo 
+de tipo mqtt_in
+Podremos escuchar diferentes topics desde el mismo usuario, simplemente suscribiendonos en 
+varios nodos mqqtin con el mismo broker. Por ejemplo, a /temp para los datos de temperatura
+
+Para utilizar MQTT desde Python (ya sea para simular sensores o enviar info normal), es algo 
+más complejo porque no lo podemos hacer sin programar.
+Tendremos que instalar una librería cliente de MQTT, como paho-mqtt con el comando:
+pip install paho-mqtt
