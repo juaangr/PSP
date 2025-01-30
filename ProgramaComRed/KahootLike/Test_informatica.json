@@ -1,0 +1,53 @@
+{
+    "nombre": "test_informatica",
+    "preguntas":[
+        {
+            "enunciado": "¿Cuál es el elemento encargado de procesar los datos de la CPU?",
+            "respuestas": ["RAM", "ROM", "Tarjeta gráfica", "Tarjeta de sonido"]
+        },
+        {
+            "enunciado":  "¿Qué es falso sobre la memoria RAM?",
+            "respuestas": ["Es volatil", "Es acceso aleatorio", "Solo lectura", "Es lectura/escritura"]
+        },
+        {
+            "enunciado":  "En el codigo ascii, cada letra es representada por:",
+            "respuestas": ["8 bits", "8 bytes", "2 bytes", "16 bits"]
+
+        },
+        {
+            "enunciado":  "Son funciones del SO:",
+            "respuestas": ["Gestionar la RAM", "Gestionar procesos", "Gestión E/S", "Todas son correctas"]
+
+        },
+        {
+            "enunciado":  "¿Cuál de los siguientes softwares no es un SO?",
+            "respuestas": ["", "", "", ""]
+
+        },
+        {
+            "enunciado":  "¿Cuál de los siguientes elementos corresponde a la seguridad lógica?",
+            "respuestas": ["Cintas de Backup", "Antivirus", "SAI", "Cluster"]
+
+        },
+        {
+            "enunciado":  "¿?",
+            "respuestas": ["", "", "", ""]
+
+        },
+        {
+            "enunciado":  "¿?",
+            "respuestas": ["", "", "", ""]
+
+        },
+        {
+            "enunciado":  "¿?",
+            "respuestas": ["", "", "", ""]
+
+        },
+        {
+            "enunciado":  "¿?",
+            "respuestas": ["", "", "", ""]
+
+        }
+    ]
+}

@@ -1,0 +1,33 @@
+Servidor multihilo con un cliente, el server en cada hilo maneja la comm con 
+cada cliente, necesitamos un json con el test.........
+capaces de hacer un sistema como un kahoot
+
+desde el cliente al servidor vamos a tener nuestro primer paquete connect
+cuando genera el hilo el server, el cliente hace una peticion "action"
+en la que estará el comando
+
+
+COMANDOS DESDE EL CLIENTE
+crearTest() // crearPregunta()
+listarTests()
+jugarTest() // responder() 
+
+
+COMANDOS DEL SERVER
+os.listdir() // para el archivo ¿?
+cerrarConexión() // de forma auto cuando se finaliza el test despues de mandar las acertadas/fallidas
+las preguntas son objetos
+
+
+/*
+"action"crearTest
+"nombre"testOnePiece 
+*/
+
+
+para abrir un archivo -> with open("nombre_test", "w") as file
+
+importar threading en el cliente PUEDE QUE NO SEA NECESARIO
+
+
+PARA EXAMEN, PENSAR EN EL FLUJO DE LAS COSAS...

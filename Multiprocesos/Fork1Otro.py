@@ -56,6 +56,7 @@ def tres_procesos():
                 else: # salimos de dentro hacia afuera, nieto espera al bisnieto
                     os.wait()
                     os._exit(0)
+                    
             else: # estamos en el hijo dos otra vez, esperamos al nieto
                 print(f"Soy el segundo hijo de nuevo despues del segundo nieto: PID: {os.getpid()}, mi padre es: {os.getppid()}")
                 os.wait()

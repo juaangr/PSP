@@ -11,6 +11,7 @@ public class Ejemplo02_2grupos extends Thread{
         }
         System.out.println(Thread.currentThread().getName()+"Finalizando la ejecución");
     }
+    
     public static void main(String[] args) {
         Thread.currentThread().setName("Principal");
         System.out.println(Thread.currentThread().getName());

@@ -1,19 +1,52 @@
-ESCENARIOS DONDE LA COMUNICACIÓN EN RED ES NECESARIA; 
+PRORGAMACIÓN DE COMUNICACIÓN EN RED
+
+OBJETOS IMPORTANTES QUE VOY A USAR (qué hacen por debajo):
+
+variable.bind() // de socket -> Va a asociar un socket con una dir 
+                                específica y un num de puerto
 
 PYTHON TODO
+
+
+ESCENARIOS DONDE LA COMUNICACIÓN EN RED ES NECESARIA; 
 
 La programación en red es el desarrollo de apps que se comunican entre sí a través de una red.
 
 
 No hay programas que a día de hoy, no estén comunicados con internet, pueden ser cualquier tipo de programa,
-ya sea IoT, videojuegos en línea, servicios web; cliente-servidor.....
+ya sea IoT, videojuegos en línea, servicios web; cliente-servidor, p2p,
+
 
 // IoT es un paradigma de red que conecta con ordenadores más pequeños para poder sacar mucha información en masa, concepto de (red en) malla
 
 
+___________________________________________________________________________________________________________________________________________________
 
 
 ROLES Y FUNCIONES EN ARQUITECTURAS CLIENTE-SERVIDOR;
+
+Cuando hablamos de una arquitectura cliente-servidor, no estamos hablando de 
+distinción por hardware sino por software.
+Un cliente y un servidor son apps que pueden ejecutar en una máquina y se 
+comunican entre sí. La app cliente solicitará siempre información que en 
+principio deberá resolver y devolver el servidor, mientras que el servidor
+calculará la solución a la petición del cliente, en caso de no saberla, 
+probablemente propague la consulta a otros servers antes de responder.
+
+Podemos resumir el rol de servidor con sus funciones como:
+    Esperar y recibir solicitudes 
+    Procesa esas solicitudes y ejecuta lo necesario para resolverlas, como consultas sql
+    manejar recursos compartidos como BBDD
+    Se asegura de no crear conflictos al acceder a los recursos, gestiona la concurrencia
+    Verifica la identidad de los clientes y se asegura que solo los autorizados realicen acciones
+
+Podemos resumir el rol de cliente como; 
+    Inicia la comunicación
+    Envía peticiones al servidor a través de protocolos de red (HTTP, FTP...)
+    Proporciona interfaz gráfica o textual a los usrs.
+    Realiza ciertos cálculos locales, como validaciones o procesamiento 
+    previo de la información que se envía al servidor
+    Recibe y procesa las respuestas del servidor
 
 Arquitectura cliente-servidor
 todos los clientes piden servicio a un servidor y este devuelve el servicio, aparece el concepto de DNS, HCP se encarga de
@@ -27,69 +60,151 @@ Marenostrum 5
 
 A nivel de seguridad, cuantas más capas haya mejor, ya que tendremos la información esparcida en todos los nodos 
 
-CLIENTE: resumido, es el que inicia la comunicación, envía peticiones al server a través de protocolos como HTTP, FTP...
-         proporciona una interfaz gráfica o textual _ _ _ _ _ 
-
-SERVIDOR: Es el que espera y recibe peticiones, suelen tener un tiempo de espera, se requiere que el server esté encendido la mayor parte del 
-          tiempo posible, envia respuestas al cliente, maneja los recursos compartidos como las bbdd, archivos o servicios externos
-          se asegura de evitar conflictos en las multiples peticiones
-          verifica las identidades en internet.
 // block-chain red de ordenadores conectada que se asegura de que al pedir datos por ejemplo, de que todos te devuelvan el mismo valor
 
-
-
+___________________________________________________________________________________________________________________________________________________
 
 LIBRERIAS Y MECANISMOS PARA APPS EN RED;
 
-Usaremos la libreria socket, para crear y manejar conexiones de red a bajo nivel usando sockets TCP/UDP
-y la libreria request para realizar peticiones HTTP/HTTPS
+// Usaremos la libreria socket, para crear y manejar conexiones de red a bajo
+// nivel usando sockets TCP/UDP
+// y la libreria request para realizar peticiones HTTP/HTTPS
 // urllib, scapy, paramiko, flask
-//asyncio, fastAPI, 
+// asyncio, fastAPI, 
 // (solo flask); Un servicio web REST usa los servicios de http 
 
+socket: para crear y manejar conexiones de red a bajo nivel usando sockets
+        TCP/UDP
+requests: para realizar peticiones HTTP/HTTPS de forma simple (APIs)
+urlib: libreria para trabajar con URLs
+scapy: para analizar, construir y manipular paquetes de red (avanzado)
+paramiko: para manejar conexiones SSH y SFTP
+flask: framework ligero para crear apps web y servicios REST
+
+Podemos usar varias librerías del propio lenguaje que nos ayudarán a hacer
+apps en red de forma más o menos simple;
+asyncio: soporta programación asíncrona para conexiones de red de alto 
+         rendimiento
+fastAPI
+ftplib
+websockets .........
+
+___________________________________________________________________________________________________________________________________________________
 
 
-SOCKETS;
+CONCEPTO DE SOCKET, TIPOS Y CARACTERÍSTICAS DE LOS SOCKETS;
 
 Un socket es un extremo en una comunicación bidireccional entre dos apps que se ejecutan en red. Es uno de los mecanismos utilizados por 
 los programas para enviar y recibir datos a través de la red, ya sea en Internet o en una red local.
 //Es un conector 
-Los sockets abstraen los detalles de la comunicación
+Los sockets abstraen los detalles de la comunicación (protocolos, transporte)
+para que las apps solo tengan que ocuparse de intercambiar datos.
 
 
 SE SEPARAN EN DOS FAMILIAS;
 
     Con orientación a conexión;
-        Chats.
+        // Se usan en Chats (o al menos vamos a pensar en esa dinámica)
         Se les llama así porque están basados en el protocolo TCP (Transmission Control Protocol), que requiere una conexión estable
-        proveen una conexión confiable, lo que quiere decir que los datos se entregan en orden y sin perdidas (se asegura de que todo llega
+        Proveen una conexión confiable, lo que quiere decir que los datos se entregan en orden y sin pérdidas (se asegura de que todo llega
         a través de comunicaciones de ACKNOWLEDGEMENT)
-        Sus usos son las apps web, servidores web...
+        Sus usos son las apps web, servidores web, navegadores...
 
-    Sin orientación a conexión;
-        Cosas que necesitan una respuesta en tiempo real, llamadas por discord, videollamadas, streaming...
-        basados en UDP (User Datagram Protocol), que NO requiere de una conexión estable
-        No proveen una conexión confiable, puede haber pérdidas...
+    Sin orientación a conexión (no orientados a conn); 
+        // Cosas que necesitan una respuesta en tiempo real, llamadas
+        Basados en UDP (User Datagram Protocol), que NO requiere de una conexión estable
+        No proveen una conexión confiable, puede haber pérdidas, pueden 
+        llegar paquetes en orden diferente al deseado y no tiene 
+        confirmaciones de llegada, 
+        Son mucho más rápidos que los orientados a conn
+        Sus usos son; streaming, voIP, DNS, juegos en línea
 
 
-Sockets multitask;
+Sockets multicast;
     Son sockets especiales no orientados a conexión que nos permite enviar datos a varios destinatarios simultáneamente usando UDP
-    usan direcciones IP "especiales", designadas a formar grupos multicast de la 224.0.0.0 a la 230.255.255.255
-    hay que asegurarse de que el trafico multicast está permitido y que la IP puesta sea admitida
+    Se suelen usar en videoconferencias grupales, transmisión en vivo a 
+    múltiples clientes
+    Usan direcciones IP "especiales", designadas a formar grupos multicast
+    de la 224.0.0.0 a la 230.255.255.255
+    Hay que asegurarse de que el trafico multicast está permitido y que la 
+    ip puesta sea admitida
+    Sus usos son voIP, streaming...
+    Se establecen numeros maximos de salto de router (TTL, time to live)
+    que limítan el alcance de los paquetes
+    // wlp1s0   este es el puerto que permite (al menos en el pc del profe) [ip adress]
 
 
 
 CARACTERISTICAS DE LOS SOCKETS;
-    Transparencia
-    Direccionamiento
-    Dirección IP
-    Puerto
-    Protocolo
-    Los sockets pueden configurarse para trabajar en modos blocantes o no blocantes
-    Interoperabilidad
-
+    Transparencia: Para la app, los detalles del hardware o de la conexión
+                   son transparentes a la hora de intercambiar información.
+    Direccionamiento, los sockets se identificarán usando una combinación de:
+        Dirección IP
+        Puerto
+        Protocolo
+    Los sockets pueden configurarse para trabajar en modos blocantes 
+    (esperan hasta terminar una operación), o no blocantes, que devuelven el
+    control inmediatamente.
+    Interoperabilidad, pueden usarse para comunicar sistemas con diferente
+    SO o arquitecturas
 
 // los primeros 1024 puertos estan cerrados, tenemos que decir que recicle el puerto ya que tras usarlo queda bloq un tiempo
 
+_______________________________________________________________________________________________________________________________________________
+
+USO DE SOCKETS PARA COMUNICAR CLIENTES Y SERVIDORES:
+
+Server
+    creación del socket
+    asocia socket a una ip y puerto específico (bind)
+    escucha las conexiones entrantes 
+    acepta las conexiones y establece la comunicación
+
+client
+    creación del socket
+    Conexión (o no) al socket servidor usando su IP y puerto
+    Envío de la información y recibimiento de la respuesta
 
 
+La librería socket nos permite crear sockets usando el método socket(), tenemos que especificar la familia de direcciones (ip), normalmente usaremos
+AF_INET, perteneciente a IPv4. Esta familia (AdressFamily) tiene un par
+"host, puerto" donde podremos poner o un dominio de internet o una IPv4,
+el puerto es un nº entero.
+socket(familia, tipo, protocolo=0, file=None)
+Los tipos de socket serán o SOCK_STREAM (TCP), o SOCK_DGRAM (UDP)
+
+Los métodos más interesantes que podemos utilizar con los sockets, son;
+· socket(), constructor de un socket
+· bind(), establece el puerto y la dirección del servidor TCP/UDP
+· listen(), escucha de peticiones por el servidor TCP
+· accept(), aceptar 
+· connect(),
+· close(),
+· recv(),
+· send(),
+· sendto(),
+· recvfrom(),
+
+
+USO DE HILOS PARA COMUNICACIÓN SIMULTANEA DE CLIENTES:
+
+from threading import Thread o algo así
+Solo vimos la version blocante de los sockets, lo que hace que al ejecutar
+en un server cualquiera como uno TCP un accept()...........
+
+importaremos la biblioteca threading y usaremos la función:
+threading.Thread(target=manejador, args=(cliente, dir_cliente))
+
+es muy similar a la función ya conocida:
+.....multiprocesing.Process....
+
+De esta forma podemos dedicar el hilo principal a escuchar y aceptar
+nuevas conexiones
+
+
+
+MODELOS DE COMM MÁS HABITUALES EN APPS DISTRIBUIDAS:
+
+Modelo cliente servidor: 
+
+Modelo publicación suscripción: 

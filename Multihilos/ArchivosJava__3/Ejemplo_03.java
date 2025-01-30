@@ -3,7 +3,8 @@ package Multihilos.ArchivosJava__3;
 import java.time.Instant;
 import java.time.Duration;
 
-public class Ejemplo_03 {
+public class Ejemplo_03 extends Thread{
+    
     @Override
     public void run(){
         long MaxSecs = 5;
@@ -20,14 +21,14 @@ public class Ejemplo_03 {
         }
         System.out.println("He terminado");
     }
+    
     public static void main(String[] args) {
         Ejemplo_03 hiloTemporal = new Ejemplo_03();
         hiloTemporal.start();
         try {
-            
-        } catch (Exception e) {
-            // TODO: handle exception
+            hiloTemporal.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();;
         }
-    }
-    
+    }    
 }
