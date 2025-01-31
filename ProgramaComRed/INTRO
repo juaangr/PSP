@@ -1,13 +1,5 @@
 PRORGAMACIÓN DE COMUNICACIÓN EN RED
-
-OBJETOS IMPORTANTES QUE VOY A USAR (qué hacen por debajo):
-
-variable.bind() // de socket -> Va a asociar un socket con una dir 
-                                específica y un num de puerto
-
 PYTHON TODO
-
-
 ESCENARIOS DONDE LA COMUNICACIÓN EN RED ES NECESARIA; 
 
 La programación en red es el desarrollo de apps que se comunican entre sí a través de una red.
@@ -35,8 +27,8 @@ probablemente propague la consulta a otros servers antes de responder.
 
 Podemos resumir el rol de servidor con sus funciones como:
     Esperar y recibir solicitudes 
-    Procesa esas solicitudes y ejecuta lo necesario para resolverlas, como consultas sql
-    manejar recursos compartidos como BBDD
+    Procesar esas solicitudes y ejecutar lo necesario para resolverlas, como consultas sql,
+    manejando recursos compartidos como BBDD
     Se asegura de no crear conflictos al acceder a los recursos, gestiona la concurrencia
     Verifica la identidad de los clientes y se asegura que solo los autorizados realicen acciones
 
