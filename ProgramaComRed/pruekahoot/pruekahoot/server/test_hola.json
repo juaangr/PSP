@@ -1,0 +1,15 @@
+{
+    "nombre": "hola",
+    "preguntas": [
+        {
+            "enunciado": "dsa",
+            "opciones": [
+                "alpha",
+                "beta",
+                "omega",
+                "epsilon"
+            ],
+            "correcta": "alpha"
+        }
+    ]
+}
